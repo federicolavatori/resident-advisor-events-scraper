@@ -1,3 +1,4 @@
 venvs
 *.csv
 .idea/
+DS_Store

@@ -5,13 +5,15 @@ A Python tool to fetch event data from the RA.co GraphQL API and save it as a CS
 ## Requirements
 
 - Python 3.6 or higher
-- requests library (pip install requests)
-- pandas library (pip install pandas)
+- requests library (`poetry add requests`)
+- pandas library (`poetry add pandas`)
 
 ## Installation
 
 1. Clone the repository or download the source code.
-2. Run pip install -r requirements.txt to install the required libraries.
+2. `cd resident-advisor-events-scraper`
+3. `poetry init`
+4. `poetry install` to get all the required packages with dependencies in `pyproject.toml`
 
 ## Usage
 
