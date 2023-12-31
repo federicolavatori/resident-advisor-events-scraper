@@ -81,6 +81,7 @@ class EventFetcher:
             print(f"End Time: {event_data['endTime']}")
             print(f"Artists: {[artist['name'] for artist in event_data['artists']]}")
             print(f"Venue: {event_data['venue']['name']}")
+            print(f"VenueAddress: {event_data['venue']['address']}")
             print(f"Event URL: {event_data['contentUrl']}")
             print(f"Number of guests attending: {event_data['attending']}")
             print("-" * 80)
@@ -132,13 +133,13 @@ class EventFetcher:
         with open(output_file, "w", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
             writer.writerow(["Event name", "Date", "Start Time", "End Time", "Artists",
-                             "Venue", "Event URL", "Number of guests attending"])
+                             "Venue", "Address", "Event URL", "Number of guests attending"])
 
             for event in events:
                 event_data = event["event"]
                 writer.writerow([event_data['title'], event_data['date'], event_data['startTime'],
                                  event_data['endTime'], ', '.join([artist['name'] for artist in event_data['artists']]),
-                                 event_data['venue']['name'], event_data['contentUrl'], event_data['attending']])
+                                 event_data['venue']['name'], event_data['venue']['address'], event_data['contentUrl'], event_data['attending']])
 
 
 def main():
@@ -161,6 +162,7 @@ def main():
         listing_date_gte = current_start_date.strftime("%Y-%m-%dT00:00:00.000Z")
         event_fetcher.payload = event_fetcher.generate_payload(args.areas, listing_date_gte, listing_date_lte)
         events = event_fetcher.fetch_all_events()
+        #event_fetcher.fetch_and_print_all_events()
         all_events.extend(events)
         current_start_date += timedelta(days=len(events))
 
