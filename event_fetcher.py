@@ -81,7 +81,7 @@ class EventFetcher:
             print(f"End Time: {event_data['endTime']}")
             print(f"Artists: {[artist['name'] for artist in event_data['artists']]}")
             print(f"Venue: {event_data['venue']['name']}")
-            print(f"VenueAddress: {event_data['venue']['address']}")
+            print(f"Address: {event_data['venue']['address']}")
             print(f"Event URL: {event_data['contentUrl']}")
             print(f"Number of guests attending: {event_data['attending']}")
             print("-" * 80)
@@ -123,12 +123,12 @@ class EventFetcher:
 
         return all_events
 
-    def save_events_to_csv(self, events, output_file="events.csv"):
+    def save_events_to_csv(self, events, output_file="data/events.csv"):
         """
         Save events to a CSV file.
 
         :param events: A list of events.
-        :param output_file: The output file path. (default: "events.csv")
+        :param output_file: The output file path. (default: "data/events.csv")
         """
         with open(output_file, "w", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
@@ -147,7 +147,7 @@ def main():
     parser.add_argument("areas", type=int, help="The area code to filter events.")
     parser.add_argument("start_date", type=str, help="The start date for event listings (inclusive, format: YYYY-MM-DD).")
     parser.add_argument("end_date", type=str, help="The end date for event listings (inclusive, format: YYYY-MM-DD).")
-    parser.add_argument("-o", "--output", type=str, default="events.csv", help="The output file path (default: events.csv).")
+    parser.add_argument("-o", "--output", type=str, default="data/events.csv", help="The output file path (default: data/events.csv).")
     args = parser.parse_args()
 
     listing_date_gte = f"{args.start_date}T00:00:00.000Z"
