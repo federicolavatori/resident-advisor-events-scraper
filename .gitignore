@@ -2,5 +2,5 @@ venvs
 *.csv
 .idea/
 .DS_Store
-config.ini
+src/config.ini
 data/

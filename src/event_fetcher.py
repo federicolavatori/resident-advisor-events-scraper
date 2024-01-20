@@ -12,7 +12,7 @@ HEADERS = {
     'Referer': 'https://ra.co/events/uk/london',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0'
 }
-QUERY_TEMPLATE_PATH = "graphql_query_template.json"
+QUERY_TEMPLATE_PATH = "src/graphql_query_template.json"
 DELAY = 1  # Adjust this value as needed
 
 
@@ -75,15 +75,15 @@ class EventFetcher:
         """
         for event in events:
             event_data = event["event"]
-            print(f"Event name: {event_data['title']}")
+            print(f"Event_name: {event_data['title']}")
             print(f"Date: {event_data['date']}")
-            print(f"Start Time: {event_data['startTime']}")
-            print(f"End Time: {event_data['endTime']}")
+            print(f"Start_Time: {event_data['startTime']}")
+            print(f"End_Time: {event_data['endTime']}")
             print(f"Artists: {[artist['name'] for artist in event_data['artists']]}")
-            print(f"Venue: {event_data['venue']['name']}")
+            print(f"Venue_name: {event_data['venue']['name']}")
             print(f"Address: {event_data['venue']['address']}")
-            print(f"Event URL: {event_data['contentUrl']}")
-            print(f"Number of guests attending: {event_data['attending']}")
+            print(f"Event_URL: {event_data['contentUrl']}")
+            print(f"Guests_attending: {event_data['attending']}")
             print("-" * 80)
 
     def fetch_and_print_all_events(self):
@@ -132,8 +132,15 @@ class EventFetcher:
         """
         with open(output_file, "w", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
-            writer.writerow(["Event name", "Date", "Start Time", "End Time", "Artists",
-                             "Venue", "Address", "Event URL", "Number of guests attending"])
+            writer.writerow(["Event_name",
+                             "Date",
+                             "Start_Time",
+                             "End_Time",
+                             "Artists",
+                             "Venue_name",
+                             "Address",
+                             "Event_URL",
+                             "Guests_attending"])
 
             for event in events:
                 event_data = event["event"]
