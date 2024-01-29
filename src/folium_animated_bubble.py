@@ -68,5 +68,6 @@ timestamped_geojson = plugins.TimestampedGeoJson(data)
 # Add the TimestampedGeoJson layer to the map
 timestamped_geojson.add_to(my_map)
 
+
 # Display the map
 my_map.show_in_browser()
