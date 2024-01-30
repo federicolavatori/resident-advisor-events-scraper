@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 def get_lat_lon(address, geolocator):
     """
     Get latitude and longitude coordinates for a given address using a geolocation service.
@@ -35,3 +36,29 @@ def scaler(df, col, new_min, new_max):
     max_value = np.max(original_column)
     scaled_column = np.round(((original_column - min_value) / (max_value - min_value)) * (new_max - new_min) + new_min).astype(int)
     return scaled_column
+
+
+def create_geojson_features(df):
+    features = []
+
+    for _, row in df.iterrows():
+        feature = {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [row['Longitude'], row['Latitude']]
+            },
+            'properties': {
+                'time': pd.to_datetime(row['hour'], unit='h').__str__(),
+                'style': {'color': ''},
+                'icon': 'circle',
+                'iconstyle': {
+                    'fillColor': row['fillColor'],
+                    'fillOpacity': 0.8,
+                    'stroke': 'true',
+                    'radius': row['count'] + 5
+                }
+            }
+        }
+        features.append(feature)
+    return features

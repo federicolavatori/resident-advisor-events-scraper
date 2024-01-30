@@ -15,6 +15,7 @@ urllib3 = "1.26.15"
 bokeh = "^3.3.2"
 geopy = "^2.4.1"
 folium = "^0.15.1"
+geojson = "^3.1.0"
 
 
 [build-system]
